@@ -1,5 +1,3 @@
-// server.mjs
-
 import express from 'express';
 import path from 'path';
 import multer from 'multer';
@@ -10,7 +8,7 @@ import { dirname } from 'path';
 const app = express();
 const port = 3000;
 
-// Helper to get __dirname in ES module
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -19,21 +17,20 @@ const upload = multer({ dest: 'uploads/' });
 app.use('/static', express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'templates/index.html'));  // Correct way to send the file
+  res.sendFile(path.join(__dirname, 'templates/index.html'));  
 });
 
 app.post('/merge', upload.array('pdfs', 3), async (req, res, next) => {
   console.log(req.files);
-  // Merge the uploaded PDF files
+ 
   await mergepdf(path.join(__dirname, req.files[0].path), path.join(__dirname, req.files[1].path) , path.join(__dirname, req.files[2].path))
  
-  // Redirect to the merged PDF file
-  res.redirect('http://localhost:3000/static/merged.pdf');
+ 
+  res.redirect('http://172.23.149.243:3000/static/merged.pdf');
 });
 
 app.listen(port,'0.0.0.0' , () => {
-  console.log(`Example app listening at http://172.23.151.200:${port}`);
+  console.log(`Example app listening at http://172.23.149.243:${port}`);
 });
 
-//dir name is used to get the current directory
-// for serving statoic file ...we use app.use(express.static(--dirname , 'public'))
+
