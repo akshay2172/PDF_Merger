@@ -17,14 +17,15 @@ const upload = multer({ dest: 'uploads/' });
 app.use('/static', express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'templates/index.html'));  
+  res.sendFile(path.join(__dirname, 'templates/PDF.html'));  
 });
 
-app.post('/merge', upload.array('pdfs', 3), async (req, res, next) => {
+app.post('/merge', upload.array('pdfs', 10), async (req, res, next) => {
   console.log(req.files);
  
-  await mergepdf(path.join(__dirname, req.files[0].path), path.join(__dirname, req.files[1].path) , path.join(__dirname, req.files[2].path))
- 
+  const pdfPaths = req.files.map(file => path.join(__dirname, file.path));
+
+  await mergepdf(pdfPaths);
  
   res.redirect('http://172.23.149.243:3000/static/merged.pdf');
 });
