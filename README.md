@@ -64,6 +64,7 @@ Before running the project, ensure you have the following installed:
 * The merged PDF will be available for download at: 
   http://localhost:3000/static/merged.pdf
 
+---
 
 # Code Overview:
 
