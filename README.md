@@ -80,6 +80,8 @@ Express.js server: Manages routes and file uploads using multer.
 ## PDF.html
 - A simple, responsive HTML form built with Bootstrap to allow users to upload files and trigger the merge proces
   
+---
+  
 # Dependencies
 - **Express**: Web framework for Node.js.
 - **Multer**: Middleware for handling multipart/form-data, used for file uploads.
